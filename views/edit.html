@@ -1,0 +1,14 @@
+<!-- Edit Questions Asked -->
+<div class="container">
+	<div class="row title">
+		<div class="col-md-6 col-md-offset-3">
+
+			<form ng-submit="updateQuestion(selectedQuestion)">
+		      <input type="text" ng-model="selectedQuestion.title" class="form-control" placeholder="Question title" required><br>
+		      <textarea ng-model="selectedQuestion.description" class="form-control" placeholder="What do you want to ask?" required></textarea><br>
+		      <input type="submit" value="Update Question" class="btn btn-info">
+		  </form>
+
+		</div>
+	</div>
+</div>

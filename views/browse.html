@@ -1,0 +1,36 @@
+<div class="container">
+	<div class="row">
+
+		<div class="col-md-offset-2 col-md-8">
+			<div class="list-group">
+					<!-- SEARCH TOOL -->
+					<div class="form-group">
+						<div class="input-group">
+							<div class="input-group-addon">
+								<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+							</div>
+				      		<input type="text" ng-model="searchQuestion" class="form-control" placeholder="Search">
+				    	</div>
+					</div>
+					<div class="title">
+						<a href="#/post" class="btn btn-warning">Post a Question</a>
+					</div>
+
+					<!-- QUESTION LIST -->
+					<a ng-repeat="question in questions | filter: searchQuestion | orderBy: 'title'" ng-href="#/edit/{{question.$id}}">
+						<div class="list-group-item">
+					        <div class="row-content">
+					            <h4 class="list-group-item-heading">{{question.title | limitTo:25}}{{ question.title.length > 25? "..." : ""}}</h4>
+					            <span class="list-group-item-text">
+					            	{{question.description}}
+					            </span>
+					        </div>
+					    </div>
+				    	<div class="list-group-separator"></div>
+			    	</a>
+			</div>
+
+		</div>
+
+	</div>
+</div>
