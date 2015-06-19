@@ -44,3 +44,7 @@ app.controller('AuthController', function($scope, $location, toaster, Auth) {
   };
 
 });
+
+// This controller gives the proper functions to the specific page, while the service gives the general functions. like a cookbook.
+// if(Auth.user.provider) <---i'm not SO sure, but I think it means if the user CHECK
+// $scope.register registers a user , $scope.login logs in a user, $scope.changePassword changes the password
