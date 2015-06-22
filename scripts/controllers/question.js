@@ -8,6 +8,11 @@ app.controller('QuestionController', function($scope, $firebase, FURL, $location
 
   $scope.questions = fbQuestions;
 
+  var fbComments = $firebase(ref.child('comments')).$asArray();
+
+  $scope.comments = fbComments;
+  // $scope.comments = Comment.comments(questionId);
+
   if(questionId) {
     $scope.selectedQuestion = getQuestion(questionId);
   }
@@ -28,6 +33,30 @@ app.controller('QuestionController', function($scope, $firebase, FURL, $location
     $scope.selectedQuestion.$save(question);
     $location.path('/');
   };
+
+  $scope.addComment = function() {
+    $scope.comments.$add(comment);
+    // var comment = {
+    //   content: $scope.content
+    //   // name
+    //   // gravatar
+    //
+    // };
+    // Comment.addComment($scope.selectedQuestion.id, comment)
+  }
+
+  // $scope.addComment = function(comment) {
+  //   //
+  //
+  //   $scope.comment.page = questionId;
+  //
+  //   // $scope.comment.username = auth.username
+  //   $scope.questions.comments.$add(comment);
+  //   // $scope.comment.username = auth.username
+  //   // $scope.question.comments.$add(comment);
+  //
+  //   // What do I need in comment? the comment, the page id, the username,
+  // };
 
 });
 
