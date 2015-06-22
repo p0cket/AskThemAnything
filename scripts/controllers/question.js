@@ -34,7 +34,10 @@ app.controller('QuestionController', function($scope, $firebase, FURL, $location
     $location.path('/');
   };
 
-  $scope.addComment = function() {
+  $scope.addComment = function(comment) {
+    comment.bucket = "Bucket";
+    comment.indentifier = questionId;
+    // comment.indentifier = $scope.selectedQuestion;
     $scope.comments.$add(comment);
     // var comment = {
     //   content: $scope.content
