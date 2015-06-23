@@ -8,7 +8,7 @@
       <p>Some Comments Below</p>
       <div class="col-md-6 col-md-offset-3">
 
-         <form ng-submit="addComment(comment)">
+         <form ng-submit="addComment(comment, {{question.$id}})">
            <!-- Was going to add a param of selectedQuestion.Id, but I think thats already provided in the scope. We'll see -->
            <input type="text" ng-model="comment.questionIdentity" class="form-control" placeholder="Placeholder text"><br>
             <textarea ng-model="comment.description" class="form-control" placeholder="What are your two cents?" required></textarea><br>

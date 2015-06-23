@@ -1,14 +1,17 @@
 'use strict';
 
-app.controller('QuestionController', function($scope, $firebase, FURL, $location, $routeParams) {
+app.controller('QuestionController', function($scope, $firebase, FURL, $location, $routeParams, Question) {
 
-  var ref = new Firebase(FURL);
-  var fbQuestions = $firebase(ref.child('questions')).$asArray();
+  // var ref = new Firebase(FURL);
+  // var fbQuestions = $firebase(ref.child('questions')).$asArray();
+  // $scope.questions = fbQuestions;
+  // We replace all of this with the one line below which uses the service to get all the posts
+  $scope.questions = Question.all;
+
   var questionId = $routeParams.questionId;
 
-  $scope.questions = fbQuestions;
-
-  var fbComments = $firebase(ref.child('comments')).$asArray();
+  // I get now that this is to make the individual IDs of the different Questions
+  var fbComments = $firebase(ref.child('comments').child("tacos")).$asArray();
 
   $scope.comments = fbComments;
   // $scope.comments = Comment.comments(questionId);
@@ -34,11 +37,26 @@ app.controller('QuestionController', function($scope, $firebase, FURL, $location
     $location.path('/');
   };
 
-  $scope.addComment = function(comment) {
-    comment.bucket = "Bucket";
-    comment.indentifier = questionId;
+// We bring in the question we are attaching it to, and so we can attach it
+  $scope.addComment = function(comment, questionId) {
+    var question_comments = $scope.comments(questionId);
+
+    if(question_comments) {
+      return question_comments.$add(comment);
+    }
+
+    // comment.bucket = "Bucket";
+    // comment.indentifier = questionId;
+    // $scope.comments.$add(comment);
+
+    // commentObject = {
+    //   text: comment.description,
+    // }
+
+    // comment.addComment($scope.selectedTask.$id, comment)
+    // -----
     // comment.indentifier = $scope.selectedQuestion;
-    $scope.comments.$add(comment);
+
     // var comment = {
     //   content: $scope.content
     //   // name
