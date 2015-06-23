@@ -58,17 +58,10 @@ app.factory('Auth', function(FURL, $firebaseAuth, $firebase) {
         Auth.user.profile.$destroy();
       }
 
-      // this just sets an empty object to Auth.user, basically deletes the user
       angular.copy({}, Auth.user);
     }
   });
 //
-// factory that has firebase and firebaseAuth and FURL injected.
-// we create a reference to firebase
-// We create a object called Auth, this has all the functions. createProfile,login, register, logout, changePassword,signedIn.
-// Then we use a firebaseAuth (now assigned to 'auth') function to assign upser data on login to Auth.user.profile
-
-
 	function get_gravatar(email, size) {
 
       email = email.toLowerCase();

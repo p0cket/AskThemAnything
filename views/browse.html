@@ -17,17 +17,17 @@
 					</div>
 
 					<!-- QUESTION LIST -->
-					<a ng-repeat="question in questions | filter: searchQuestion | orderBy: 'title'" ng-href="#/postview/{{question.$id}}">
-							<div class="list-group-item">
+					<a ng-repeat="question in questions | filter: searchQuestion | orderBy: 'title'" ng-href="#/edit/{{question.$id}}">
+						<div class="list-group-item">
 					        <div class="row-content">
 					            <h4 class="list-group-item-heading">{{question.title | limitTo:25}}{{ question.title.length > 25? "..." : ""}}</h4>
 					            <span class="list-group-item-text">
-					            	{{question.description}} <h4 ng-href="www.google.com" class="btn">Edit</h4>
+					            	{{question.description}}
 					            </span>
 					        </div>
 					    </div>
 				    	<div class="list-group-separator"></div>
-			    </a>
+			    	</a>
 			</div>
 
 		</div>

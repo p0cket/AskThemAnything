@@ -1,20 +1,12 @@
 'use strict';
 
-app.controller('QuestionController', function($scope, $firebase, FURL, $location, $routeParams, Question) {
+app.controller('QuestionController', function($scope, $firebase, FURL, $location, $routeParams) {
 
-  // var ref = new Firebase(FURL);
-  // var fbQuestions = $firebase(ref.child('questions')).$asArray();
-  // $scope.questions = fbQuestions;
-  // We replace all of this with the one line below which uses the service to get all the posts
-  $scope.questions = Question.all;
-
+  var ref = new Firebase(FURL);
+  var fbQuestions = $firebase(ref.child('questions')).$asArray();
   var questionId = $routeParams.questionId;
 
-  // I get now that this is to make the individual IDs of the different Questions
-  var fbComments = $firebase(ref.child('comments').child("tacos")).$asArray();
-
-  $scope.comments = fbComments;
-  // $scope.comments = Comment.comments(questionId);
+  $scope.questions = fbQuestions;
 
   if(questionId) {
     $scope.selectedQuestion = getQuestion(questionId);
@@ -36,48 +28,6 @@ app.controller('QuestionController', function($scope, $firebase, FURL, $location
     $scope.selectedQuestion.$save(question);
     $location.path('/');
   };
-
-// We bring in the question we are attaching it to, and so we can attach it
-  $scope.addComment = function(comment, questionId) {
-    var question_comments = $scope.comments(questionId);
-
-    if(question_comments) {
-      return question_comments.$add(comment);
-    }
-
-    // comment.bucket = "Bucket";
-    // comment.indentifier = questionId;
-    // $scope.comments.$add(comment);
-
-    // commentObject = {
-    //   text: comment.description,
-    // }
-
-    // comment.addComment($scope.selectedTask.$id, comment)
-    // -----
-    // comment.indentifier = $scope.selectedQuestion;
-
-    // var comment = {
-    //   content: $scope.content
-    //   // name
-    //   // gravatar
-    //
-    // };
-    // Comment.addComment($scope.selectedQuestion.id, comment)
-  }
-
-  // $scope.addComment = function(comment) {
-  //   //
-  //
-  //   $scope.comment.page = questionId;
-  //
-  //   // $scope.comment.username = auth.username
-  //   $scope.questions.comments.$add(comment);
-  //   // $scope.comment.username = auth.username
-  //   // $scope.question.comments.$add(comment);
-  //
-  //   // What do I need in comment? the comment, the page id, the username,
-  // };
 
 });
 
