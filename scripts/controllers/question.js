@@ -1,35 +1,63 @@
 'use strict';
 
-app.controller('QuestionController', function($scope, $firebase, FURL, $location, $routeParams) {
+app.controller('QuestionController', function($scope, $location, toaster, Question, Auth) {
 
-  var ref = new Firebase(FURL);
-  var fbQuestions = $firebase(ref.child('questions')).$asArray();
-  var questionId = $routeParams.questionId;
+  $scope.createQuestion = function() {
+    $scope.question.status = 'open';
+    $scope.question.gravatar =  Auth.user.profile.gravatar;
+    $scope.question.name = Auth.user.profile.name;
+    $scope.question.poster = Auth.user.uid;
 
-  $scope.questions = fbQuestions;
-
-  if(questionId) {
-    $scope.selectedQuestion = getQuestion(questionId);
-  }
-
-  function getQuestion(questionId) {
-    return $firebase(ref.child('questions').child(questionId)).$asObject();
+    Question.createQuestion($scope.question).then(function(ref) {
+      toaster.pop('success', 'Question created successfully.');
+      $scope.question = {title: '', description: '', status: 'open', gravatar: '', name: '', poster: ''};
+      $location.path('/browse/' + ref.key());
+    });
   };
 
-  $scope.postQuestion = function(question) {
-    // $scope.question.username = auth.username
-    // $scope.question.page =  $routeParams.amaName [remember to inject $routeParams into this function]
-    $scope.questions.$add(question);
-    $location.path('/');
+  $scope.editQuestion = function(question) {
+    Question.editQuestion(question).then(function() {
+      toaster.pop('success', 'Question is updated.');
+    });
   };
 
-  $scope.updateQuestion = function(question) {
-    // only can be done if specific user has permission to do this.
-    $scope.selectedQuestion.$save(question);
-    $location.path('/');
-  };
+// everytime we use Question, we call a function it has and pass that function variables. 
 
+//
+//
+//
+//   var ref = new Firebase(FURL);
+//   var fbQuestions = $firebase(ref.child('questions')).$asArray();
+//   var questionId = $routeParams.questionId;
+//
+//   $scope.questions = fbQuestions;
+//
+//   if(questionId) {
+//     $scope.selectedQuestion = getQuestion(questionId);
+//   }
+//
+//   function getQuestion(questionId) {
+//     return $firebase(ref.child('questions').child(questionId)).$asObject();
+//   };
+//
+//   $scope.postQuestion = function(question) {
+//     // $scope.question.username = auth.username
+//     // $scope.question.page =  $routeParams.amaName [remember to inject $routeParams into this function]
+//     $scope.questions.$add(question);
+//     $location.path('/');
+//   };
+//
+//   $scope.updateQuestion = function(question) {
+//     // only can be done if specific user has permission to do this.
+//     $scope.selectedQuestion.$save(question);
+//     $location.path('/');
+//   };
+//
 });
+//
+//
+//
+
 
 // we could probably do ng-repeat="tasks in tasks.$person"
 
