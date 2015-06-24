@@ -13,7 +13,7 @@ var app = angular
     $routeProvider
       .when('/', {
         templateUrl: 'views/browse.html',
-        controller: 'QuestionController'
+        controller: 'BrowseController'
       })
       .when('/post', {
         templateUrl: 'views/post.html',

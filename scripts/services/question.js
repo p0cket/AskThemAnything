@@ -4,6 +4,7 @@ app.factory('Question', function(FURL, $firebase, Auth) {
 
   var ref = new Firebase(FURL);
   var questions = $firebase(ref.child('questions')).$asArray();
+  console.log("This is a console.log where it works:");
   var user = Auth.user;
 
   var Question = {
