@@ -3,7 +3,7 @@
 app.factory('Question', function(FURL, $firebase, Auth) {
 
   var ref = new Firebase(FURL);
-  var questions = $firebase(ref.child('question')).$asArray();
+  var questions = $firebase(ref.child('questions')).$asArray();
   var user = Auth.user;
 
   var Question = {
@@ -15,7 +15,7 @@ app.factory('Question', function(FURL, $firebase, Auth) {
 
     createQuestion: function(question) {
       question.datetime = Firebase.ServerValue.TIMESTAMP;
-      return question.$add(question);
+      return questions.$add(question);
     },
 
     editQuestion: function(question) {

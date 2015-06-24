@@ -4,9 +4,9 @@ app.controller('QuestionController', function($scope, $location, toaster, Questi
 
   $scope.createQuestion = function() {
     $scope.question.status = 'open';
-    $scope.question.gravatar =  Auth.user.profile.gravatar;
-    $scope.question.name = Auth.user.profile.name;
-    $scope.question.poster = Auth.user.uid;
+    // $scope.question.gravatar =  Auth.user.profile.gravatar;
+    // $scope.question.name = Auth.user.profile.name;
+    // $scope.question.poster = Auth.user.uid;
 
     Question.createQuestion($scope.question).then(function(ref) {
       toaster.pop('success', 'Question created successfully.');
@@ -21,7 +21,7 @@ app.controller('QuestionController', function($scope, $location, toaster, Questi
     });
   };
 
-// everytime we use Question, we call a function it has and pass that function variables. 
+// everytime we use Question, we call a function it has and pass that function variables.
 
 //
 //
