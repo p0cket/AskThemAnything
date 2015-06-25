@@ -1,7 +1,14 @@
 'use strict';
 
-app.controller('QuestionController', function($scope, $location, toaster, Question, Auth) {
+app.controller('QuestionController', function($scope, $location, toaster, Question, Auth, $routeParams) {
 
+  var questionId = $routeParams.questionId;
+  console.log("this is the questionId: " + questionId)
+  if(questionId) {
+    $scope.selectedQuestion = Question.getQuestion(questionId);
+  }
+  console.log("here should be scope.selectedQuestion:");
+  console.log($scope.selectedQuestion);
   $scope.createQuestion = function() {
     $scope.question.status = 'open';
     // $scope.question.gravatar =  Auth.user.profile.gravatar;
@@ -20,6 +27,7 @@ app.controller('QuestionController', function($scope, $location, toaster, Questi
       toaster.pop('success', 'Question is updated.');
     });
   };
+
 
 
 
