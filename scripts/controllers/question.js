@@ -21,6 +21,11 @@ app.controller('QuestionController', function($scope, $location, toaster, Questi
     });
   };
 
+
+
+
+
+
 // everytime we use Question, we call a function it has and pass that function variables.
 
 //

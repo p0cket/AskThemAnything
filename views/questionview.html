@@ -1,0 +1,20 @@
+<!-- Edit Questions Asked -->
+<div class="container">
+  <div>
+    <h2> {{selectedQuestion.title}} </h2>
+    <p> {{selectedQuestion.description}} </p>
+  </div>
+	<div class="row title">
+      <p>Some Comments Below</p>
+      <div class="col-md-6 col-md-offset-3">
+
+         <form ng-submit="addComment(comment)">
+           <!-- Was going to add a param of selectedQuestion.Id, but I think thats already provided in the scope. We'll see -->
+           <input type="text" ng-model="comment.questionIdentity" class="form-control" placeholder="Placeholder text"><br>
+            <textarea ng-model="comment.description" class="form-control" placeholder="What are your two cents?" required></textarea><br>
+            <input type="submit" value="Add Comment" class="btn btn-info">
+         </form>
+      <h5>Something else<h5>
+		</div>
+	</div>
+</div>
