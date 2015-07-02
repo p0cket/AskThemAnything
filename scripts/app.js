@@ -21,7 +21,7 @@ var app = angular
       })
       .when('/questionview/:questionId', {
         templateUrl: 'views/questionview.html',
-        controller: 'QuestionController'
+        controller: 'QuestionviewController'
       })
       .when('/edit/:questionId', {
         templateUrl: 'views/edit.html',

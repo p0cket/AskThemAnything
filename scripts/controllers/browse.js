@@ -1,9 +1,9 @@
 'use strict'
 
 app.controller('BrowseController', function($scope, $routeParams, toaster, Question, Auth){
-
+  $scope.testVar = "this is a test";
   $scope.searchQuestion = '';
-  console.log("Browse.js console log:");
+  console.log("Browse.js console log: here");
   $scope.questions = Question.all;
   $scope.signedIn = Auth.signedIn;
   // Above is a function, not a variable. same as $scop.signedIn = function() { return Auth.signedIn();} ,

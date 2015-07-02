@@ -1,17 +1,20 @@
 'use strict';
 
 app.factory('Question', function(FURL, $firebase, Auth) {
-
+  console.log();
   var ref = new Firebase(FURL);
   var questions = $firebase(ref.child('questions')).$asArray();
-  console.log("This is a console.log where it works:");
+  console.log("This is a console.log where it works:", questions);
   var user = Auth.user;
 
   var Question = {
     all: questions,
 
     getQuestion: function(questionId) {
-      return $firebase(ref.child('questions').child(questionId));
+      console.log("question service ID", questionId);
+      var resResult = $firebase(ref.child('questions').child(questionId)).$asObject();
+      console.log("resResult typeof",typeof(resResult));
+      return resResult;
     },
 
     createQuestion: function(question) {
@@ -28,6 +31,12 @@ app.factory('Question', function(FURL, $firebase, Auth) {
       var q = this.getquestion(questionId);
       return q.$update({status: "cancelled"});
     },
+
+    //
+    // createComment: function(questionId, comment) {
+    //    resCom = $firebase(ref.child('comments').child(questionId)).$asObject();
+    //   return resCom;
+    // },
 
     //
 
