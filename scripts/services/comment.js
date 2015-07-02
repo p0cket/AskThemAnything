@@ -9,6 +9,7 @@ app.factory('Comment', function(FURL, $firebase, Auth) {
     all: comments,
 
     getCommentarray: function(questionId) {
+      console.log("QuestionID getCommentarray: " + questionId );
       var resCom = $firebase(ref.child('comments').child(questionId)).$asObject();
       return resCom;
       // var resResult = $firebase(ref.child('questions').child(questionId)).$asObject();
@@ -16,10 +17,14 @@ app.factory('Comment', function(FURL, $firebase, Auth) {
       // do stuff to get comments for a question
     },
 
-    createComment: function(questionId, comment){
-      individualCommentarray = getCommentarray(questionId);
+    createComment: function(comment){
       comment.datetime = Firebase.ServerValue.TIMESTAMP;
-      return individualCommentarray.$add(comment);
+      return comments.$add(comment);
+
+      // individualCommentarray = this.getCommentarray(questionId);
+      // comment.datetime = Firebase.ServerValue.TIMESTAMP;
+      // return individualCommentarray.$add(comment);
+
       // do stuff to create a comment
     },
 
