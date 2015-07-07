@@ -15,6 +15,28 @@
             <input type="submit" value="Add Comment" class="btn btn-info">
          </form>
       <h5>Something else<h5>
+        <!--  -->
+        <div class="panel-body">
+          <div class="title" ng-hide="comments && comments.lenth > 0">
+            <span>No COMMENT ABOUT THIS QUESTION</span>
+          </div><br>
+
+          <div class="row" ng-repeat="com in comments">
+            <!-- <div class="col-md-1">
+              <img ng-src="{{com.gravatar}}" class="img-circle comment gravatar">
+            </div> -->
+            <div class="col-md-6 col-md-offset-3">
+              <div class="well well-sm cmt">
+                <span class="cmt-title">This Title:</span>
+                <span class="cmt-time pull-right"><span am-time-ago="com.datetime"></span></span><br>
+
+                <span>{{com.questionIdentity}}</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <!--  -->
 		</div>
 	</div>
 </div>

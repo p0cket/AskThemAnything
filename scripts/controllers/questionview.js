@@ -9,7 +9,9 @@ app.controller('QuestionviewController', function($scope, $routeParams, toaster,
   // $scope.listMode = true;
   // we took out the code above because we didn't want to use it
 
-  $scope.comments = Comment.all;
+  // $scope.comments = Comment.all;
+  // $scope.comments = Comment.comments($routeParams.questionId);
+  // console.log("This is scope.comments ", $scope.comments);
 
 
   if($routeParams.questionId){
@@ -25,7 +27,6 @@ app.controller('QuestionviewController', function($scope, $routeParams, toaster,
 
   function setSelectedQuestion(question) {
     $scope.selectedQuestion = question;
-
     // if($scope.signedIn()) {
     //   $scope.isTaskCreator = Task.isCreator;
     //   $scope.isOpen = Task.isOpen;
@@ -33,6 +34,8 @@ app.controller('QuestionviewController', function($scope, $routeParams, toaster,
   }
 
   function setSelectedCommentarray(questionId){
+    $scope.comments = Comment.comments(question.$id);
+    console.log("Is this even running? If so $scope.comments = ", $scope.comments);
     $scope.selectedCommentarray = Comment.getCommentarray(questionId);
   }
 
@@ -41,12 +44,31 @@ app.controller('QuestionviewController', function($scope, $routeParams, toaster,
   //   // $scope.se
   // }
   $scope.createComment = function() {
-    Comment.createComment($scope.comment).then(function(ref) {
+    // var comment = {
+    //   content: $scope.content,
+      // name: $scope.user.profile.name,
+      // gravatar: $scope.user.profile.gravator
+    // };
+
+    Comment.createComment($scope.selectedQuestion.$id, $scope.comment).then(function(ref) {
       toaster.pop('success', 'Comment created successfully.');
       $scope.comment = {};
     });
   };
 
+  //
+  // $scope.addComment = function() {
+  //   var comment = {
+  //     content: $scope.content,
+  //     name: $scope.user.profile.name,
+  //     gravatar: $scope.user.profile.gravatar
+  //   };
+  //
+  //   Comment.addComment($scope.selectedTask.$id, comment).then(function() {
+  //     $scope.content = '';
+  //   });
+  // };
+//
 
 
 
