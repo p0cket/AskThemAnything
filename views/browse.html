@@ -34,7 +34,7 @@
 					<a ng-repeat="question in questions | filter: searchQuestion | orderBy: 'datetime':true" ng-href="#/questionview/{{question.$id}}">
 						<div class="list-group-item">
 					        <div class="row-content">
-					            <h4 class="list-group-item-heading">{{question.title | limitTo:25}}{{ question.title.length > 25? "..." : ""}}</h4>
+					            <h4 class="list-group-item-heading">{{question.title | limitTo:120}}{{ question.title.length > 120? "..." : ""}}</h4>
 					            <span class="list-group-item-text">
 					            	{{question.description}}
 					            </span>
