@@ -23,6 +23,8 @@ app.factory('Comment', function(FURL, $firebase, Auth) {
     createComment: function(questionId, comment){
       var question_comments = this.comments(questionId);
       comment.datetime = Firebase.ServerValue.TIMESTAMP;
+      comment.name = Auth.user.profile.name;
+      comment.gravatar = Auth.user.profile.gravatar;
       if(question_comments) {
         return question_comments.$add(comment);
       }
