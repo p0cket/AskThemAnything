@@ -10,10 +10,10 @@ app.controller('QuestionController', function($scope, $location, toaster, Questi
   console.log("here should be scope.selectedQuestion:");
   console.log($scope.selectedQuestion);
   $scope.createQuestion = function() {
-    $scope.question.status = 'open';
-    // $scope.question.gravatar =  Auth.user.profile.gravatar;
-    // $scope.question.name = Auth.user.profile.name;
-    // $scope.question.poster = Auth.user.uid;
+    // $scope.question.status = 'open';
+    $scope.question.gravatar =  Auth.user.profile.gravatar;
+    $scope.question.name = Auth.user.profile.name;
+    $scope.question.poster = Auth.user.uid;
 
     Question.createQuestion($scope.question).then(function(ref) {
       toaster.pop('success', 'Question created successfully.');

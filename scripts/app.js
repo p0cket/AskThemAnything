@@ -32,7 +32,7 @@ var app = angular
         controller: 'AuthController',
       })
       .when('/login', {
-        templateUrl: 'views/register.html',
+        templateUrl: 'views/login.html',
         controller: 'AuthController',
       })
       .otherwise({

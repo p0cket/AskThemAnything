@@ -49,7 +49,9 @@ app.controller('QuestionviewController', function($scope, $routeParams, toaster,
       // name: $scope.user.profile.name,
       // gravatar: $scope.user.profile.gravator
     // };
-
+    console.log("Profile? ", Auth.user.profile);
+    $scope.question.gravatar =  Auth.user.profile.gravatar;
+    $scope.question.name = Auth.user.profile.name;
     Comment.createComment($scope.selectedQuestion.$id, $scope.comment).then(function(ref) {
       toaster.pop('success', 'Comment created successfully.');
       $scope.comment = {};

@@ -1,6 +1,7 @@
 'use strict';
 
 app.factory('Auth', function(FURL, $firebaseAuth, $firebase) {
+
   var ref = new Firebase(FURL);
   var auth = $firebaseAuth(ref);
 
@@ -32,6 +33,7 @@ app.factory('Auth', function(FURL, $firebaseAuth, $firebase) {
         })
         .then(function(data) {
           // store user data in Firebase after creating account
+          return Auth.createProfile(data.uid, user);
         });
     },
 
