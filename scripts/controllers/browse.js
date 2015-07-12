@@ -24,6 +24,10 @@ app.controller('BrowseController', function($scope, $routeParams, toaster, Quest
     // }
   }
 
+  // function createAnswer(answer) {
+  // be sure to add Answer as a dependency
+  // }
+
   // function upVote(question) {
   //
   // }
