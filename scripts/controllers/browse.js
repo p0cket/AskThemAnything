@@ -24,6 +24,7 @@ app.controller('BrowseController', function($scope, $routeParams, toaster, Quest
     // }
   }
 
-
-
+  // function upVote(question) {
+  //
+  // }
 });

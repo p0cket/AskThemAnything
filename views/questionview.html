@@ -1,20 +1,35 @@
 <!-- Edit Questions Asked -->
 <div class="container">
-  <div>
-    <h2> {{selectedQuestion.title}} </h2>
-    <p> {{selectedQuestion.description}} </p>
-  </div>
+    <div>
+      <h2> {{selectedQuestion.title}} </h2>
+      <p> {{selectedQuestion.description}} </p>
+    </div>
 	<div class="row title">
-      <p>Some Comments Below 101</p>
+      <p>• • •</p>
       <div class="col-md-6 col-md-offset-3">
 
-         <form ng-submit="createComment(comment)">
+        <!--  -->
+        <div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = 'askthemanything';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+        <!--  -->
+
+         <form ng-show="signedIn()" ng-submit="createComment(comment)">
            <!-- Was going to add a param of selectedQuestion.Id, but I think thats already provided in the scope. We'll see -->
            <input type="text" ng-model="comment.questionIdentity" class="form-control" placeholder="Placeholder text"><br>
             <textarea ng-model="comment.description" class="form-control" placeholder="What are your two cents?" required></textarea><br>
             <input type="submit" value="Add Comment" class="btn btn-info">
          </form>
-      <h5>Something else<h5>
         <!--  -->
         <div class="panel-body">
           <div class="title" ng-hide="comments && comments.lenth > 0">
@@ -25,9 +40,12 @@
             <!-- <div class="col-md-1">
               <img ng-src="{{com.gravatar}}" class="img-circle comment gravatar">
             </div> -->
-            <div class="col-md-6 col-md-offset-3">
+            <div class="col-md-2">
+              <img ng-src="{{com.gravatar}}" class="img-circle comment gravatar">
+            </div>
+            <div class="col-md-6 col-md-offset-1">
               <div class="well well-sm cmt">
-                <span class="cmt-title">This Title:</span>
+                <span class="cmt-title">Posted at xxxx:</span>
                 <!-- <span class="cmt-time pull-right"><span am-time-ago="com.datetime"></span></span><br> -->
 
                 <span>{{com.questionIdentity}}</span>

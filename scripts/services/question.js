@@ -19,6 +19,7 @@ app.factory('Question', function(FURL, $firebase, Auth) {
 
     createQuestion: function(question) {
       question.datetime = Firebase.ServerValue.TIMESTAMP;
+      question.rank = 0;
       return questions.$add(question);
     },
 
@@ -48,6 +49,10 @@ app.factory('Question', function(FURL, $firebase, Auth) {
       return question.status === "open";
     }
 
+    // upVote: function(question) {
+    //   question.rank += 1;
+    //   return question.rank;
+    // }
 
   };
 
