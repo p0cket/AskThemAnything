@@ -57,6 +57,16 @@ app.controller('QuestionviewController', function($scope, $routeParams, toaster,
     });
   };
 
+  $scope.updateComment = function(parentCom, subcomment){
+    // var subcomment = $scope.subcomment;
+    debugger;
+    Comment.updateComment(parentCom, subcomment).then(function(ref) {
+      toaster.pop('success', 'Subcomment created successfully.');
+      $scope.subcomment = {};
+    });
+  };
+  // You can only call things from your controllers.
+
   //
   // $scope.addComment = function() {
   //   var comment = {
