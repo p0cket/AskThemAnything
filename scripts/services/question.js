@@ -11,9 +11,7 @@ app.factory('Question', function(FURL, $firebase, Auth) {
     all: questions,
 
     getQuestion: function(questionId) {
-      console.log("question service ID", questionId);
       var resResult = $firebase(ref.child('questions').child(questionId)).$asObject();
-      console.log("resResult typeof",typeof(resResult));
       return resResult;
     },
 

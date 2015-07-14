@@ -76,6 +76,7 @@ app.factory('Comment', function(FURL, $firebase, Auth) {
 
 
     updateComment: function(parentCom, subcomment) {
+
       // add unique identifier
       debugger;
       subcomment.datetime = Firebase.ServerValue.TIMESTAMP;
@@ -83,7 +84,8 @@ app.factory('Comment', function(FURL, $firebase, Auth) {
       subcomment.gravatar = Auth.user.profile.gravatar;
       subcomment.subcomment = {};
 
-      return parentCom.subcomment.push(subcomment);
+      parentCom.subcomment.push(subcomment);
+      return parentCom.update({});
       // .then has an issue because there is no promise here
 
       // adding a comment
