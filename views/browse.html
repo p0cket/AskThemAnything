@@ -31,28 +31,35 @@
 					</div>
 
 					<!-- QUESTION LIST -->
-					<a ng-repeat="question in questions | filter: searchQuestion | orderBy: 'datetime':true" ng-href="#/questionview/{{question.$id}}#disqus_thread">
+					<div ng-repeat="question in questions | filter: searchQuestion | orderBy: 'datetime':true">
 							<!-- <div class="well"> -->
-							<div class="list-group-item" >
-							<div class="row-picture">
-									<img class="circle" ng-src="{{question.gravatar}}" >
-							</div>
+							<div class="list-group-item">
+								<div class="pull-left">
+									<div class="row-picture">
+											<img class="circle" ng-src="{{question.gravatar}}" >
+									</div>
 					        <div class="row-content">
-					            <h4 class="list-group-item-heading" >{{question.title | limitTo:120}}{{ question.title.length > 120? "..." : ""}}</h4>
+					            <h4 class="list-group-item-heading"><a class="special-list-item" ng-href="#/questionview/{{question.$id}}#disqus_thread">{{question.title | limitTo:120}}{{ question.title.length > 120? "..." : ""}}</a></h4>
 											<span class="list-group-item-text">
 												<span am-time-ago="question.datetime"></span>
 											</span>
-											<a ng-show="signedIn()" href="" class="btn">Reply!</a>
 											<!-- <span class="list-group-item-text">
 					            	{{question.description}}
 					            </span> -->
 					        </div>
-									<br>
-									<h6 class="pull-right">comments </h6><h6 ng-click="">(xx) </h6>
-									<h5 class="pull-right">^</h5>
+								</div>
+									<!-- <br>
+									<h6>comments </h6><h6 ng-click="">(xx) </h6>
+									<h5>^</h5> -->
+								<div class="pull-right">
+									<a ng-show="signedIn()" href="" class="btn btn-primary">Reply!</a>
+									 <h6>comments </h6><h6 ng-click="">(xx) </h6>
+									 <h5>^</h5>
+								</div>
+
 					    </div>
 				    	<div class="list-group-separator"></div>
-			    	</a>
+			    	</div>
 			</div>
 
 		</div>
