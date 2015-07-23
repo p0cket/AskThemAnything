@@ -17,7 +17,7 @@ app.factory('Question', function(FURL, $firebase, Auth) {
 
     createQuestion: function(question) {
       question.datetime = Firebase.ServerValue.TIMESTAMP;
-      question.rank = 0;
+      question.rank = 1;
       return questions.$add(question);
     },
 
