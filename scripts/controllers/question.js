@@ -28,9 +28,10 @@ app.controller('QuestionController', function($scope, $location, toaster, Questi
     });
   };
 
-  // $scope.upvote = function(){
-  //   question.rank++
-  // }
+  $scope.upvoteQuestion = function(question){
+    debugger;
+     Question.upvoteQuestion(question);
+   }
 
 
 

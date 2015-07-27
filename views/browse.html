@@ -34,14 +34,15 @@
 					<div ng-repeat="question in questions | filter: searchQuestion | orderBy: 'datetime':true">
 							<!-- <div class="well"> -->
 							<div class="list-group-item">
-								<div class="pull-left">
+								<div class="pull-left custom-list-item">
 									<div class="row-picture">
 											<img class="circle" ng-src="{{question.gravatar}}" >
 									</div>
 					        <div class="row-content">
 					            <h4 class="list-group-item-heading"><a class="special-list-item" ng-href="#/questionview/{{question.$id}}#disqus_thread">{{question.title | limitTo:120}}{{ question.title.length > 120? "..." : ""}}</a></h4>
 											<span class="list-group-item-text">
-												<span am-time-ago="question.datetime"></span>
+											 <span am-time-ago="question.datetime"></span>
+												<!-- <span>{{question.datetime}}</span> -->
 											</span>
 											<!-- <span class="list-group-item-text">
 					            	{{question.description}}
@@ -54,7 +55,7 @@
 								<div class="pull-right">
 									<a ng-show="signedIn()" href="" class="btn btn-primary">Reply!</a>
 									 <h6>comments </h6><h6 ng-click="">(xx) </h6>
-									 <h5>^</h5>
+									 <div ng-click="upvoteQuestion(question)">^ {{question.rank}}</div>
 								</div>
 
 					    </div>

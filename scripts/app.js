@@ -6,7 +6,8 @@ var app = angular
     'ngResource',
     'ngRoute',
     'firebase',
-    'toaster'
+    'toaster',
+    'angularMoment'
   ])
   .constant('FURL', 'https://askthemanything.firebaseio.com/')
   .config(function ($routeProvider) {

@@ -36,8 +36,14 @@ app.factory('Question', function(FURL, $firebase, Auth) {
     //    resCom = $firebase(ref.child('comments').child(questionId)).$asObject();
     //   return resCom;
     // },
-
     //
+    upvoteQuestion: function(question) {
+      debugger;
+      var q = this.getQuestion(questionId);
+      return q.$update({rank: this.rank++});
+    },
+    //
+
 
     isCreator: function(question) {
       return (user && user.provider && user.uid === question.poster);
