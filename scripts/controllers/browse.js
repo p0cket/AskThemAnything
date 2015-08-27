@@ -28,7 +28,9 @@ app.controller('BrowseController', function($scope, $routeParams, toaster, Quest
   // be sure to add Answer as a dependency
   // }
 
-  // function upVote(question) {
-  //
-  // }
+  $scope.upvoteQuestion = function(question){
+    debugger;
+     Question.upvoteQuestion(question);
+   }
+
 });

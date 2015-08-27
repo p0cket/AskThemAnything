@@ -1,17 +1,15 @@
 'use strict';
 
-app.factory('Question', function(FURL, $firebase, Auth) {
-  console.log();
+app.factory('Question', function(FURL, $firebaseObject, $firebaseArray, Auth) {
   var ref = new Firebase(FURL);
-  var questions = $firebase(ref.child('questions')).$asArray();
-  console.log("This is a console.log where it works:", questions);
+  var questions = $firebaseArray(ref.child('questions'));
   var user = Auth.user;
 
   var Question = {
     all: questions,
 
     getQuestion: function(questionId) {
-      var resResult = $firebase(ref.child('questions').child(questionId)).$asObject();
+      var resResult = $firebaseObject(ref.child('questions').child(questionId));
       return resResult;
     },
 
@@ -37,10 +35,14 @@ app.factory('Question', function(FURL, $firebase, Auth) {
     //   return resCom;
     // },
     //
+
     upvoteQuestion: function(question) {
       debugger;
-      var q = this.getQuestion(questionId);
-      return q.$update({rank: this.rank++});
+      var q = this.getQuestion(question.$id);
+      debugger;
+      return q.$update({rank: q.rank++});
+      // var q = this.getQuestion(questionId);
+      // return q.$update({rank: this.rank++});
     },
     //
 

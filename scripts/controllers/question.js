@@ -28,10 +28,7 @@ app.controller('QuestionController', function($scope, $location, toaster, Questi
     });
   };
 
-  $scope.upvoteQuestion = function(question){
-    debugger;
-     Question.upvoteQuestion(question);
-   }
+
 
 
 
