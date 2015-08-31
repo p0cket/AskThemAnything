@@ -1,6 +1,6 @@
 'use strict';
 
-app.factory('Comment', function(FURL, $firebase, Auth) {
+app.factory('Comment', function(FURL, $firebaseArray, $firebaseObject, Auth) {
   var ref = new Firebase(FURL);
   // var comments = $firebase(ref.child('comments')).$asArray();
   // var user = Auth.user;
@@ -8,12 +8,12 @@ app.factory('Comment', function(FURL, $firebase, Auth) {
   var Comment = {
     // all: comments,
     comments: function(questionId) {
-      return $firebase(ref.child('comments').child(questionId)).$asArray();
+      return $firebaseArray(ref.child('comments').child(questionId));
     },
 
     getCommentarray: function(questionId) {
       console.log("QuestionID getCommentarray: " + questionId );
-      var resCom = $firebase(ref.child('comments').child(questionId)).$asObject();
+      var resCom = $firebaseObject(ref.child('comments').child(questionId));
       return resCom;
       // var resResult = $firebase(ref.child('questions').child(questionId)).$asObject();
       // Comment.getCommentarray(questionId)
@@ -22,7 +22,7 @@ app.factory('Comment', function(FURL, $firebase, Auth) {
 
     getCommentById: function(questionId, commentId) {
       console.log("CommentId getCommentById: " + commentId );
-      var resCom = $firebase(ref.child('comments').child(questionId).child(commentId)).$asObject();
+      var resCom = $firebaseObject(ref.child('comments').child(questionId).child(commentId));
       return resCom;
     },
 
