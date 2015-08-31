@@ -37,12 +37,9 @@ app.factory('Question', function(FURL, $firebaseObject, $firebaseArray, Auth) {
     //
 
     upvoteQuestion: function(question) {
-      debugger;
       var q = this.getQuestion(question.$id);
-      debugger;
-      return q.$save({rank: q.rank++});
-      // var q = this.getQuestion(questionId);
-      // return q.$update({rank: this.rank++});
+      q.rank = q.rank++;
+      return q.$save({rank: q.rank});
     },
     //
 
