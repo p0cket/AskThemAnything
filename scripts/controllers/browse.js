@@ -29,7 +29,6 @@ app.controller('BrowseController', function($scope, $routeParams, toaster, Quest
   // }
 
   $scope.upvoteQuestion = function(question){
-    debugger;
      Question.upvoteQuestion(question);
    }
 
